@@ -1,0 +1,10 @@
+@import "tailwindcss";
+:root {
+  --bg-gradient: linear-gradient(to right, #fbca01, #326548);
+  --bg-green326548: #326548;
+}
+@theme {
+  --font-display: "Satoshi", "sans-serif";
+  --color-bg-gradient: var(--bg-gradient);
+  --color-bg-green326548: var(--bg-green326548);
+}
