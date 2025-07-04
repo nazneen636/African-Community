@@ -1,27 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetchData } from "../../Hooks/useFetchData";
-import { joinGroup } from "../../utils/joinGroup.utils";
+import {
+  joinGroup,
+  leaveGroup,
+  watchGroupJoined,
+} from "../../utils/joinGroup.utils";
 import { useAuth } from "../../Context/AuthContext";
+import { getMemberCount } from "../../utils/GetGroupMember.utils";
 
 const GroupDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   console.log(user, "user");
 
-  const { data, loading, error } = useFetchData("groups");
-  const [joined, setJoined] = useState(false);
+  const { data, loading } = useFetchData("groups");
+  const [isJoined, setIsJoined] = useState(false);
   const group = data?.find((g) => g.id == id);
   console.log(group);
 
+  // is joined or not
+  useEffect(() => {
+    if (!user?.uid || !id) return;
+
+    const unsubscribe = watchGroupJoined(user.uid, id, setIsJoined);
+    return () => unsubscribe();
+  }, [user?.uid, id]);
+
+  // member count
+  const [memberCount, setMemberCount] = useState(0);
+  useEffect(() => {
+    const fetchMemberCount = async () => {
+      const count = await getMemberCount(id);
+      setMemberCount(count);
+      console.log(count);
+    };
+
+    if (id) {
+      fetchMemberCount();
+    }
+  }, [id]);
+
+  // handle join group
   const handleJoinGroup = async () => {
     try {
       await joinGroup(user.uid, id);
-      setJoined(true);
+      // setJoined(true);
     } catch (err) {
       console.log(err);
     }
   };
+
+  // handle leave group
+  const handleLeaveGroup = async () => {
+    try {
+      await leaveGroup(user.uid, id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   if (loading || !group) return <div>Loading...</div>;
   return (
     <div className="w-full mx-auto rounded-xl bg-[#326548b7]">
@@ -57,15 +95,12 @@ const GroupDetails = () => {
           </div>
 
           <div className="flex gap-5">
-            <button
-              onClick={handleJoinGroup}
-              className="px-5 py-2 rounded-lg bg-green-600 hover:bg-bg-green326548 text-white font-semibold transition"
-            >
-              Member
+            <button className="px-5 py-2 rounded-lg bg-green-600 hover:bg-bg-green326548 text-white font-semibold transition">
+              Member {memberCount}
             </button>
-            {joined ? (
+            {isJoined ? (
               <button
-                onClick={handleJoinGroup}
+                onClick={handleLeaveGroup}
                 className="px-5 py-2 rounded-lg bg-green-600 hover:bg-bg-green326548 text-white font-semibold transition"
               >
                 Leave Group
