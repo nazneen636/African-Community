@@ -26,16 +26,14 @@ export const leaveGroup = async (userId, groupId) => {
   }
 };
 
-// Real-time listener to check if user joined a group
+
 export const watchGroupJoined = (userId, groupId, callback) => {
   const groupRef = ref(db, `joinGroup/${userId}/${groupId}`);
 
-  // Listen for real-time changes
   const unsubscribe = onValue(groupRef, (snapshot) => {
     const joined = snapshot.exists();
-    callback(joined); // returns true or false
+    callback(joined);
   });
 
-  // Return an unsubscribe function to detach the listener
   return () => off(groupRef);
 };
