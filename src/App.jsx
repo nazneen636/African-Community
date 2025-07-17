@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
-import AuthProvider from "./Context/AuthContext";
 import Member from "./pages/Member/Member";
 import Group from "./pages/Group/Group";
 import GroupDetails from "./pages/Group/[id]";
