@@ -10,7 +10,7 @@ export const useGroupPostDataFetch = (dbName) => {
       try {
         const snapshot = await get(ref(db, dbName));
         if (snapshot.exists()) {
-          const fetchedData = snapshot.val(); // return full nested structure
+          const fetchedData = snapshot.val(); 
           setFetch({ data: fetchedData, error: null, loading: false });
         } else {
           setFetch({ data: {}, error: null, loading: false });

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@firebase/firestore": "^4.8.0",
     "@tailwindcss/vite": "^4.1.10",
     "firebase": "^11.9.1",
     "moment": "^2.30.1",

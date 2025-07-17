@@ -34,7 +34,7 @@ const PostCard = ({ post }) => {
           "https://images.pexels.com/photos/17305594/pexels-photo-17305594.jpeg"
         }
         alt="Post"
-        className="rounded-xl w-full h-40 object-cover"
+        className="rounded-xl w-full h-full object-cover"
       />
 
       {/* Content */}
