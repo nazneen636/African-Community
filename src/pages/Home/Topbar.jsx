@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/ezra_logo.png";
 import { MdSearch } from "react-icons/md";
 import { useAuth } from "../../Context/AuthContext";
-import { BiDownArrow } from "react-icons/bi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import EditProfileModal from "../../components/Modal/EditProfileModal";
 import { getAuth } from "firebase/auth";

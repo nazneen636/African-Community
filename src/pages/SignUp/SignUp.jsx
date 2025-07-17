@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // import { AuthContext } from "../../Context/AuthContext";
 import { onChangeHandler } from "../../utils/OnChangeHandler.utils";
 import { handleValidation } from "../../utils/Validation.utils";

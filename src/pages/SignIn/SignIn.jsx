@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc"; // Google icon
 // import { AuthContext } from "../../Context/AuthContext";
 import { onChangeHandler } from "../../utils/OnChangeHandler.utils";
-import { useNavigate } from "react-router-dom";
-import lib from "../../lib/lib";
+// import { useNavigate } from "react-router-dom";
+// import lib from "../../lib/lib";
 import { ClipLoader } from "react-spinners";
 import { handleValidation } from "../../utils/Validation.utils";
 import { useAuth } from "../../Context/AuthContext";

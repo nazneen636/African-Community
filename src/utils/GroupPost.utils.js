@@ -1,4 +1,4 @@
-import { getDatabase, push, ref, set } from "firebase/database";
+import { getDatabase, push, ref } from "firebase/database";
 import lib from "../lib/lib";
 
 const db = getDatabase();
